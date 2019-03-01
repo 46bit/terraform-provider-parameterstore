@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/46bit/terraform-provider-parameterstore/aws"
 	"github.com/hashicorp/terraform/plugin"
-	"github.com/terraform-providers/terraform-provider-aws/aws"
 )
 
 func main() {

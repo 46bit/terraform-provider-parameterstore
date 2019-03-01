@@ -1,13 +1,9 @@
 package aws
 
 import (
-	"fmt"
 	"log"
-	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/ssm"
 	awsbase "github.com/hashicorp/aws-sdk-go-base"
 	"github.com/hashicorp/terraform/helper/logging"
@@ -31,7 +27,8 @@ type Config struct {
 	AllowedAccountIds   []string
 	ForbiddenAccountIds []string
 
-	Insecure bool
+	SsmEndpoint string
+	Insecure    bool
 
 	SkipCredsValidation     bool
 	SkipRegionValidation    bool
@@ -42,6 +39,7 @@ type Config struct {
 type AWSClient struct {
 	accountid string
 	region    string
+	partition string
 	ssmconn   *ssm.SSM
 }
 
@@ -96,6 +94,7 @@ func (c *Config) Client() (interface{}, error) {
 	client := &AWSClient{
 		accountid: accountID,
 		region:    c.Region,
+		partition: partition,
 		ssmconn:   ssm.New(sess.Copy(&aws.Config{Endpoint: aws.String(c.SsmEndpoint)})),
 	}
 

@@ -1,4 +1,4 @@
-`passrameter-store` Terraform Provider
+`parameter_store` Terraform Provider
 ======================================
 
 **Use secrets from [`pass`](https://www.passwordstore.org) in AWS Parameter Store without leaking the secrets into Terraform statefiles.**

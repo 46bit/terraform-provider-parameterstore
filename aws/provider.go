@@ -1,11 +1,8 @@
 package aws
 
 import (
-	"bytes"
-	"fmt"
 	"log"
 
-	"github.com/hashicorp/terraform/helper/hashcode"
 	"github.com/hashicorp/terraform/helper/mutexkv"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
@@ -144,11 +141,11 @@ func Provider() terraform.ResourceProvider {
 		},
 
 		DataSourcesMap: map[string]*schema.Resource{
-			//"parameter": dataSourceParameter(),
+			"parameterstore_parameter": dataSourceParameter(),
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
-			//"pass_parameter": resourcePassParameter(),
+			//"parameterstore_parameter_from_pass": resourcePassParameter(),
 		},
 		ConfigureFunc: providerConfigure,
 	}
