@@ -1,5 +1,31 @@
-Terraform Provider
-==================
+`passrameter-store` Terraform Provider
+======================================
+
+**Use secrets from [`pass`](https://www.passwordstore.org) in AWS Parameter Store without leaking the secrets into Terraform statefiles.**
+
+This is forked from the [AWS Terraform Provider](https://github.com/terraform-providers/terraform-provider-aws) and released under the same license.
+
+Why is this needed?
+-------------------
+
+The AWS Terraform Provider offers a resource for parameters in Parameter Store. But it leaks secrets into your statefiles:
+
+> Note: The unencrypted value of a SecureString will be stored in the raw state as plain-text. Read more about sensitive data in state.
+>
+> –[terraform.io/docs/providers/aws/r/ssm_parameter.html](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html)
+
+This Terraform Provider is aimed at working around this limitation in the particular case where you are storing secrets in `pass` and deploying them to Parameter Store. This is common if you want to have a safe, encrypted copy of your secrets (e.g., keys) but also need to have them deployed in AWS to be available for your application.
+
+Usage
+-----
+
+This provides two Terraform resources:
+
+  - A data source for checking that a named parameter exists in
+    Parameter Store;
+
+  - A resource that inserts values from [`pass`](https://www.passwordstore.org) into Parameter Store.
+
 
 Requirements
 ------------
