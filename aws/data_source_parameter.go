@@ -41,10 +41,9 @@ func dataParameterRead(d *schema.ResourceData, meta interface{}) error {
 
 	name := d.Get("parameter_name").(string)
 
-	f := false
 	paramInput := &ssm.GetParameterInput{
 		Name:           aws.String(name),
-		WithDecryption: &f,
+		WithDecryption: aws.Bool(false),
 	}
 
 	log.Printf("[DEBUG] Reading SSM Parameter: %s", paramInput)

@@ -145,7 +145,7 @@ func Provider() terraform.ResourceProvider {
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
-			//"parameterstore_parameter_from_pass": resourcePassParameter(),
+			"parameterstore_parameter_from_pass": resourceParameterFromPass(),
 		},
 		ConfigureFunc: providerConfigure,
 	}
